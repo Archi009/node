@@ -1,0 +1,15 @@
+ajax.rest 서버 만들어서 구동
+
+ajax방식으로 요구하면 json 방식으로 반응 해 줌
+
+
+thread: 일꾼
+process: 실행중인 프로그램; multi process= 실행중인 프로그램이 여러개
+processor: cpu; multi processor= cpu가 여러개
+
+하나의 process 내부에 작동하는 thread가 있는데 이게 여러개면 multi thread이다
+
+nodejs = single thread
+
+no-blocking = asyncronus  (비동기
+
