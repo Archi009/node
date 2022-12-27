@@ -11,10 +11,12 @@ const server = http.createServer((req, res) => {
   const myUrl = new URL("http://127.0.0.1:3000" + req.url);
   if (myUrl.pathname == "/todoList") {
     res.end(JSON.stringify(todoList));
-  }else if{
-    let numOfList = myUrl.searchParams.get("todoList");
+  }else if(myUrl.searchParams == ){
+    let numList = myUrl.searchParams.get("todoList")
   }
-);
+});
+
+
 server.listen(3000, () => {
   console.log("server running http://127.0.0.1:3000");
 });
