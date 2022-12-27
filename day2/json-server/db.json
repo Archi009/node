@@ -1,0 +1,49 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": " json-server",
+      "author ": "kim"
+    },
+    {
+      "id": "2",
+      "title": "sec",
+      "author ": "lee"
+    },
+    {
+      "id": "3",
+      "title": "third",
+      "author ": "lee"
+    },
+    {
+      "id": "6",
+      "title": " j-server",
+      "author ": "qm"
+    },
+    {
+      "id": "4",
+      "title": "leo",
+      "author": "messi"
+    },
+    {
+      "id": "5",
+      "title": "rashy",
+      "author": "marcus"
+    },
+    {
+      "id": "7",
+      "title": "franky",
+      "author": "dejong"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "body": "some comment",
+      "postId": 2
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
