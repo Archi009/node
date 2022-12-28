@@ -29,8 +29,11 @@
   "comments": [
     {
       "id": "1",
-      "body": "some comment",
-      "postId": 2
+      "body": "sancho"
+    },
+    {
+      "id": "2",
+      "body": "bruno"
     }
   ],
   "profile": {

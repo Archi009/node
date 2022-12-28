@@ -5,7 +5,7 @@ const fs = require("fs");
 const server = http.createServer((req, res) => {
   const myUrl = new URL("http://localhost:3000" + req.url); //주소랑 url의 프로토콜까지 있어야 완전한 url이 만들어 진다
   console.log("pathname:", myUrl.pathname);
-  console.log("searchparam", myUrl.searchParams);
+  console.log("searchparam", myUrl.searchParams); //이런 대부분의 처리를 express가 대부분 처리해준다
   if (myUrl.pathname.startsWith("/page")) {
     const pagename = "./template" + myUrl.pathname.substring(5) + ".html";
     fs.readFile(pagename, "utf8", (err, data) => {
