@@ -2,6 +2,7 @@ const url = "/customer";
 selectAll(); //전체 조회
 insert(); //등록버튼에 이벤트 지정
 del();
+edit();
 //전체 조회
 function selectAll() {
   fetch(url)
@@ -17,7 +18,7 @@ function selectAll() {
       <td>${res[i].email}</td>
       <td>${res[i].phone}</td>
       <td>${res[i].address}</td>
-      <td><button class="btn btn-success" id="delbtn">삭제</button><button id="selbtn">조회</button></td>
+      <td><button class="btn btn-success" id="delbtn">삭제</button><button class="btn btn-success" id="selbtn">조회</button></td>
     </tr>`;
         list.innerHTML += tr;
       }
@@ -47,6 +48,35 @@ function insert() {
   });
 }
 //수정
+function edit() {
+  updbtn.addEventListener("click", function () {
+    let data = {
+      name: username.value,
+      email: email.value,
+      phone: phone.value,
+      address: address.value,
+    };
+    let id = userid.value;
+    fetch(`${url}/${id}`, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.result == true) {
+          alert("수정완료");
+          selectAll();
+        } else alert("수정실패");
+        console.log(res);
+      })
+      .catch(() => {
+        alert("수정실패");
+      });
+  });
+}
 
 //삭제
 function del() {

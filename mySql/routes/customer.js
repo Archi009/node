@@ -15,9 +15,6 @@ router.get("/", (req, res) => {
   });
 });
 
-//단건조회
-router.get("/:id", (req, res) => {});
-
 //등록
 router.post("/", (req, res) => {
   let sql = "insert into customers set ?";
@@ -30,6 +27,7 @@ router.post("/", (req, res) => {
     res.json(results);
   });
 });
+
 //단건조회
 router.get("/:id", (req, res) => {
   const id = req.params.id;
@@ -45,7 +43,25 @@ router.get("/:id", (req, res) => {
 });
 
 //수정
-router.put("/:id", (req, res) => {});
+router.put("/:id", (req, res) => {
+  let sql = "update customers set ? where id=?";
+  let data = [req.body, req.params.id];
+  pool.query(sql, data, function (err, results, fields) {
+    if (err) {
+      console.log(err);
+      throw err;
+    }
+    console.log(results);
+    let resultData = {};
+    if (results.changedRows > 0) {
+      resultData.result = true;
+      resultData.data = req.body;
+    } else {
+      resultData.result = false;
+    }
+    res.send(resultData);
+  });
+});
 
 //삭제
 router.delete("/:id", (req, res) => {

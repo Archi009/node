@@ -14,7 +14,7 @@ const conn = {
 let connection = mysql.createConnection(conn); //DB커넥션 생성
 connection.connect(); //DB접속
 
-sql = "SELECT * FROM customers";
+sql = "SELECT * FROM customers where id = 11";
 connection.query(sql, function (err, results, fields) {
   console.log(results);
 });

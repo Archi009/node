@@ -1,0 +1,9 @@
+클라에서 서버로  
+파라미터를 바ㅏㄷ아 올 때 
+1querystring
+
+2post (body)
+
+3json [{},{},{}]
+
+4path variable :url 안에 값을 읽음  

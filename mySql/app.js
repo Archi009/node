@@ -7,6 +7,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var customerRouter = require("./routes/customer");
+var booksRouter = require("./routes/books");
 const session = require("express-session"); //session과filestore을 require해서 불러와야한다.
 const fileStore = require("session-file-store")(session);
 
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/customer", customerRouter);
+app.use("/books", booksRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

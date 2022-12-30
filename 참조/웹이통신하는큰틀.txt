@@ -1,0 +1,31 @@
+DB서버에 데이터를 저장하고 가져온다(DB와 REST의 연동은 mySQL을 이용해서 한다){insert into , update set where, select from where, delete from where}
+
+데이터를 중계 곳 = 서버(node.js, spring, c# 등)
+{REST서버 이용}
+cont mysql = require (myspl)
+1conn -연결 요청 (ip id pw 정보를 전달하며 연결 요청)
+2query - 수행 query를 요구하면서 수행 명령을 지정해 준다 
+3결과 받기
+4연결 종료 (동시 접속자 수는 제한돼 요구사항을 이 끝나면 바로바로 종료돼야 한다)
+
+클라와 서버 사이에 언어가 달라서 Json형태의 string으로 변환해서 서로 정보를 보내준다
+
+서비스를 제공 받는 쪽
+fetch 를 이용해 REST서버에 요구를 한다
+
+
+-브라우저는 xmlhttpRequest ajax를 통해서 받을 수 있다
+
+-AJAX를 함수화 해서 만든게 fetch(내장 오브젝트)
+
+
+-cdn axios jqery 도 AJAX값을 함수화 해서 사용
+
+AJAX=비동기 통신 페이지 이동없이(백그라운드로) 서버로 부터 데이터(XML, JSOn(형식))만 받아와서 페이지 일부분을 갱신하는 기술 
+
+JSON.parse()
+JSON.stringfy
+
+
+
+res.json()

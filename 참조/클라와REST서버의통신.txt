@@ -1,0 +1,14 @@
+클라
+
+
+
+
+
+REST서버 (router가 총괄)
+(라우터 핸들러에 도달하기 전에 미들웨어에서 값들을 잘라서 객체형태로 만들어 req에 넣어준다 )
+잘라서 넣어준 값을
+req.params()
+req.query()
+req.body() 의 각각의 객체(params,query,body)로 저장해 형태별로 읽겠다
+express.use(라우터)
+(풀어쓰자면) express.use("url", 라우터객체)

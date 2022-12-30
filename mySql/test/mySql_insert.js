@@ -26,6 +26,9 @@ connection.query(sql, data, function (err, results, fields) {
     console.log(err);
   }
   console.log(results);
+  // connection.query("SELECT LAST_INSERT_ID()", function (err, results) {
+  //   console.log("id:", results);
+  // });
 });
 
 connection.end(); //DB접속 종료
