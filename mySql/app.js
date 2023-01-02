@@ -15,7 +15,7 @@ var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
+app.set("view engine", "jade"); //뷰엔진의 종류 지정
 
 app.use(logger("dev"));
 app.use(express.json());
