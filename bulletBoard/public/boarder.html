@@ -12,8 +12,12 @@
       <div class="cell-right">
         <a href="#">로그인</a>
         <a href="#">회원가입</a>
-        <a href="#">글 수정</a>
-        <a href="#">글 작성</a>
+        <a href="#">로그아웃</a>
+        <a href="#" onclick="crt()">글 작성</a>
+        <a href="#" onclick="upd()">글 수정</a>
+        <!-- <button>글 수정</button> 
+        <button>글 작성</button> 
+         -->
       </div>
     </header>
 
@@ -33,36 +37,48 @@
       </table>
     </section>
 
-    <section class="article-detail table-common con row" style="display:none">
+    <section class="article-detail table-common con row" id="detail" style="display:none">
       <h1 class="con">게시글 상세</h1>
-      <div class="article-writer cell">
-        <div class="writer-icon">이미지</div>
-        <span>작성자</span>
+      <div >
+       <span id="writer"></span>
       </div>
-      <table class="cell" border="1">
+      <table border="1">
         <colgroup>
           <col width="100px" />
         </colgroup>
         <tbody>
-          <tr class="article-title">
-            <th>[번호]제목</th>
-            <td colspan="3">내용2_2</td>
+          <tr >
+            <th>제목</th>
+            <td id="title"></td>
+            <th>번호</th>
+            <td id="no"></td>
           </tr>
-          <tr class="article-info">
+          <tr>
             <th>날짜</th>
-            <td>내용3_2</td>
-            <th>조회수</th>
-            <td>내용4_2</td>
+            <td id="time"></td>
+            <th>카테고리</th>
+            <td id="category"></td>
           </tr>
-          <tr class="article-body">
-            <td colspan="4">
+          <tr>
+            <td id="text" colspan="4">
            
             </td>
           </tr>
         </tbody>
       </table>
     </section>   
-   <footer></footer>
+    <form action="">
+      <fieldset class="article-list table-common con" id="inputField" style="display: none;">
+
+      <label>제목</label><input type="text" name="title" id="inputTitle">
+      <label>카테고리</label><input type="text" name="category" id="inputCategory">
+      <div><label>내용</label></div>
+      <textarea name="txt" id="txt" cols="100" rows="10"></textarea>
+      <button type="button" id="ct" style="display: none">글쓰기</button>
+      <button type="button" id="edi" style="display: none">수정</button>
+    </fieldset>
+    </form>
+    <footer></footer>
     <script src="./javascripts/client.js"></script>
   </body>
 </html>

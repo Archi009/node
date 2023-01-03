@@ -252,3 +252,9 @@ body {
   content: " : ";
   font-weight: bold;
 }
+#list {
+  text-align: center;
+}
+#text {
+  padding-left: 50px;
+}

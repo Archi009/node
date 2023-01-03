@@ -9,7 +9,7 @@ document
     resetClass(form, "signin");
     resetClass(form, "reset");
     form.classList.add("signup");
-    document.getElementById("submit-btn").innerText = "Sign Up";
+    document.getElementById("submit_btn").innerText = "Sign Up";
   });
 document
   .getElementsByClassName("show-signin")[0]
@@ -18,7 +18,7 @@ document
     resetClass(form, "signup");
     resetClass(form, "reset");
     form.classList.add("signin");
-    document.getElementById("submit-btn").innerText = "Sign In";
+    document.getElementById("submit_btn").innerText = "Sign In";
   });
 document
   .getElementsByClassName("show-reset")[0]
@@ -27,11 +27,11 @@ document
     resetClass(form, "signup");
     resetClass(form, "signin");
     form.classList.add("reset");
-    document.getElementById("submit-btn").innerText = "Reset password";
+    document.getElementById("submit_btn").innerText = "Reset password";
   });
 
 //클릭 이벤트 생성
-btn.addEventListener("click", function (ev) {
+submit_btn.addEventListener("click", function (ev) {
   let txt = ev.target.innerText;
   console.log(txt);
   //데이터 선언
