@@ -2,10 +2,13 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
+var session = require("express-session");
 var logger = require("morgan");
+const fileStore = require("session-file-store")(session);
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+
 var loginRouter = require("./routes/login");
 var boarderRouter = require("./routes/boarder");
 
@@ -20,10 +23,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  session({
+    secret: "secret key",
+    resave: "false",
+    saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      // secure: true,
+      maxAge: 24 * 60 * 60 * 1000, //session 만료시간 밀리초
+    },
+    store: new fileStore(),
+  })
+);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/login", loginRouter);
+
+app.use("/guest", loginRouter);
+app.use("/", loginRouter);
 app.use("/boarder", boarderRouter);
 
 // catch 404 and forward to error handler

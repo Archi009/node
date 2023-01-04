@@ -10,9 +10,7 @@
   <body>
     <header class="top-menu con row">
       <div class="cell-right">
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
-        <a href="#">로그아웃</a>
+        <a href="/logout">로그아웃</a>
         <a href="#" onclick="crt()">글 작성</a>
         <a href="#" onclick="upd()">글 수정</a>
         <!-- <button>글 수정</button> 
@@ -29,25 +27,28 @@
             <th>번호</th>
             <th>제목</th>
             <th>작성자</th>
-            <th>카테고리</tr>
+            <th>카테고리</th>
           </tr>
         </thead>
-        <tbody id="list">
-        </tbody>
+        <tbody id="list"></tbody>
       </table>
     </section>
 
-    <section class="article-detail table-common con row" id="detail" style="display:none">
+    <section
+      class="article-detail table-common con row"
+      id="detail"
+      style="display: none"
+    >
       <h1 class="con">게시글 상세</h1>
-      <div >
-       <span id="writer"></span>
+      <div>
+        <span id="writer"></span>
       </div>
       <table border="1">
         <colgroup>
           <col width="100px" />
         </colgroup>
         <tbody>
-          <tr >
+          <tr>
             <th>제목</th>
             <td id="title"></td>
             <th>번호</th>
@@ -60,23 +61,26 @@
             <td id="category"></td>
           </tr>
           <tr>
-            <td id="text" colspan="4">
-           
-            </td>
+            <td id="text" colspan="4"></td>
           </tr>
         </tbody>
       </table>
-    </section>   
+    </section>
     <form action="">
-      <fieldset class="article-list table-common con" id="inputField" style="display: none;">
-
-      <label>제목</label><input type="text" name="title" id="inputTitle">
-      <label>카테고리</label><input type="text" name="category" id="inputCategory">
-      <div><label>내용</label></div>
-      <textarea name="txt" id="txt" cols="100" rows="10"></textarea>
-      <button type="button" id="ct" style="display: none">글쓰기</button>
-      <button type="button" id="edi" style="display: none">수정</button>
-    </fieldset>
+      <fieldset
+        class="article-list table-common con"
+        id="inputField"
+        style="display: none"
+      >
+        <label>제목</label><input type="text" name="title" id="inputTitle" />
+        <label>카테고리</label
+        ><input type="text" name="category" id="inputCategory" />
+        <label id="num"></label>
+        <div><label>내용</label></div>
+        <textarea name="txt" id="txt" cols="100" rows="10"></textarea>
+        <button type="button" id="ct" style="display: none">글쓰기</button>
+        <button type="button" id="edi" style="display: none">수정</button>
+      </fieldset>
     </form>
     <footer></footer>
     <script src="./javascripts/client.js"></script>

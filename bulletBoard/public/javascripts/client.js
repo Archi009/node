@@ -19,11 +19,11 @@ function selectAll() {
 //작성
 ct.addEventListener("click", function () {
   let data = {
-    title: inputTitle.innerHTML,
-    // id값
-    text: txt.innerHTML,
-    category: inputCategory.innerHTML,
+    title: inputTitle.value,
+    txt: txt.value,
+    category: inputCategory.value,
   };
+  console.log(data);
   fetch(url, {
     method: "post",
     headers: {
@@ -34,7 +34,39 @@ ct.addEventListener("click", function () {
     .then((res) => res.json())
     .then((res) => {
       selectAll();
+      valueClear();
+      fieldHidden();
     });
+});
+
+//수정
+edi.addEventListener("click", function (ev) {
+  let data = {
+    title: inputTitle.value,
+    txt: txt.value,
+    category: inputCategory.value,
+  };
+  let no = num.innerText;
+  console.log(no);
+  fetch(`${url}/${no}`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.result == true) {
+        alert("수정완료");
+        selectAll();
+      } else alert("수정실패");
+      console.log(res);
+    })
+    .catch(() => {
+      alert("수정실패");
+    });
+  valueClear();
 });
 
 //상세페이지
@@ -54,8 +86,6 @@ list.addEventListener("click", function (ev) {
     });
 });
 
-//수정
-
 //삭제
 
 // 글작성 수정 버튼 숨기기 보이기
@@ -63,9 +93,31 @@ function crt() {
   inputField.style.display = "block";
   ct.style.display = "block";
   edi.style.display = "none";
+  valueClear();
 }
 function upd() {
   inputField.style.display = "block";
   ct.style.display = "none";
   edi.style.display = "block";
+  let writer = document.getElementById("title").innerText;
+  let category1 = document.getElementById("category").innerText;
+  let text1 = document.getElementById("text").innerText;
+  let no = document.getElementById("no").innerText;
+  console.log(writer, text1, category1);
+  inputTitle.value = writer;
+  inputCategory.value = category1;
+  txt.value = text1;
+  num.innerText = no;
+}
+function fieldHidden() {
+  inputField.style.display = "none";
+}
+function fieldBlock() {
+  inputField.style.display = "block";
+}
+function valueClear() {
+  inputTitle.value = "";
+  txt.value = "";
+  inputCategory.value = "";
+  num.innerText = "";
 }

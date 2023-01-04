@@ -28,19 +28,19 @@ app.use(express.static(path.join(__dirname, "public")));
 //     maxAge: 24 * 60 * 60 * 1000,
 //   })
 // );
-app.use(
-  session({
-    secret: "secret key",
-    resave: "false",
-    saveUninitialized: true,
-    cookie: {
-      httpOnly: true,
-      // secure: true,
-      maxAge: 60000, //session 만료시간 밀리초
-    },
-    store: new fileStore(),
-  })
-);
+// app.use(
+//   session({
+//     secret: "secret key",
+//     resave: "false",
+//     saveUninitialized: true,
+//     cookie: {
+//       httpOnly: true,
+//       // secure: true,
+//       maxAge: 60000, //session 만료시간 밀리초
+//     },
+//     store: new fileStore(),
+//   })
+// );
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
