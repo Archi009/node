@@ -12,10 +12,7 @@
       <div class="cell-right">
         <a href="/logout">로그아웃</a>
         <a href="#" onclick="crt()">글 작성</a>
-        <a href="#" onclick="upd()">글 수정</a>
-        <!-- <button>글 수정</button> 
-        <button>글 작성</button> 
-         -->
+        <a href="#" onclick="upd()" id="updt" style="display: none">글 수정</a>
       </div>
     </header>
 
@@ -73,13 +70,23 @@
         style="display: none"
       >
         <label>제목</label><input type="text" name="title" id="inputTitle" />
-        <label>카테고리</label
-        ><input type="text" name="category" id="inputCategory" />
+        <label for="category">카테고리</label>
+
+        <select name="category" id="inputCategory">
+          <option value="">카테고리 선택</option>
+          <option value="monologue">monologue</option>
+          <option value="prey">prey</option>
+          <option value="bullchit">bullshit</option>
+          <option value="joke">joke</option>
+          <option value="information">information</option>
+          <option value="diary">diary</option>
+        </select>
         <label id="num"></label>
         <div><label>내용</label></div>
         <textarea name="txt" id="txt" cols="100" rows="10"></textarea>
         <button type="button" id="ct" style="display: none">글쓰기</button>
         <button type="button" id="edi" style="display: none">수정</button>
+        <button type="button" id="dell" style="display: none">삭제</button>
       </fieldset>
     </form>
     <footer></footer>

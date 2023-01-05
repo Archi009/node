@@ -10,10 +10,12 @@ document
     resetClass(form, "reset");
     form.classList.add("signup");
     document.getElementById("submit_btn").innerText = "Sign Up";
+    id.value = "";
   });
 document
   .getElementsByClassName("show-signin")[0]
   .addEventListener("click", function () {
+    makeNone();
     let form = document.getElementsByClassName("form")[0];
     resetClass(form, "signup");
     resetClass(form, "reset");
@@ -23,6 +25,7 @@ document
 document
   .getElementsByClassName("show-reset")[0]
   .addEventListener("click", function () {
+    makeNone();
     let form = document.getElementsByClassName("form")[0];
     resetClass(form, "signup");
     resetClass(form, "signin");
@@ -30,6 +33,7 @@ document
     document.getElementById("submit_btn").innerText = "Reset password";
   });
 signinSel();
+
 //클릭 이벤트 생성
 submit_btn.addEventListener("click", function (ev) {
   let btnText = ev.target.innerText;
@@ -45,25 +49,28 @@ submit_btn.addEventListener("click", function (ev) {
   if (btnText == "Sign Up") {
     if (pw.value != pwCheck.value) {
       alert("비밀번호가 같지 않습니다.");
-    }
-    fetch("/guest/signup", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((res) =>
-        // (res) => console.log(res)
-        {
-          if (res.affectedRows > 0) {
-            signinSel();
-          } else {
-            alert("아이디 중복");
+      return;
+    } else {
+      fetch("/guest/signup", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((res) =>
+          // (res) => console.log(res)
+          {
+            if (res.affectedRows > 0) {
+              signinSel();
+              alert("회원가입 완료");
+            } else {
+              alert("아이디 중복");
+            }
           }
-        }
-      );
+        );
+    }
   } //로그인
   else if (btnText == "Sign In") {
     login_form.submit();
@@ -71,6 +78,26 @@ submit_btn.addEventListener("click", function (ev) {
   else if (btnText == "Reset password") {
   }
 });
+//아이디 중복검사
+function dupcheck() {
+  if (submit_btn.innerText == "Sign Up") {
+    fetch(`${url}/check`)
+      .then((res) => res.json())
+      .then((res) => {
+        for (let i = 0; i < res.length; i++) {
+          if (id.value == res[i].id) {
+            dupCheck.style = "display: block";
+            dupCheck.value = "아이디 중복";
+            dupCheck.style = "color : red";
+            break;
+          } else {
+            dupCheck.style.display = "none";
+            dupCheck.innerText = "";
+          }
+        }
+      });
+  }
+}
 
 function signinSel() {
   let form = document.getElementsByClassName("form")[0];
@@ -78,4 +105,7 @@ function signinSel() {
   resetClass(form, "reset");
   form.classList.add("signin");
   document.getElementById("submit_btn").innerText = "Sign In";
+}
+function makeNone() {
+  dupCheck.style.display = "none";
 }

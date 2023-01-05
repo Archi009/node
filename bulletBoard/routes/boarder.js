@@ -21,11 +21,16 @@ router.get("/", (req, res) => {
 //상세페이지,단건조회
 router.get("/:id", (req, res) => {
   const id = req.params.id;
+  const tip = req.session.nickname;
   pool.query(sql.selectOne, id, function (err, result, fields) {
     if (err) {
       console.log(err);
     }
+    result[0].tip = tip;
+    console.log(result[0].tip);
     res.json(result[0]);
+
+    // console.log(res);
   });
 });
 //작성
@@ -59,4 +64,19 @@ router.put("/:no", (req, res) => {
     res.send(resultData);
   });
 });
+
+//삭제
+router.delete("/:no", (req, res) => {
+  let data = req.params.no;
+  console.log(data);
+  pool.query(sql.delete, data, function (err, result, fields) {
+    if (err) {
+      console.log(err);
+    }
+
+    res.statusCode = 200;
+    res.end();
+  });
+});
+
 module.exports = router;

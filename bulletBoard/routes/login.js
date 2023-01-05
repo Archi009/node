@@ -12,9 +12,17 @@ const sql = {
 //회원가입
 router.post("/signup", (req, res) => {
   pool.query(sql.insert, req.body, function (err, result, fields) {
+    console.log(result);
     if (err) {
+      // if (err.code == "ER_DUP_ENTRY") {
+      //   res.send(`alert("아이디 중복")
+      //   location.reload()`);
+      // }
       console.log(err);
     }
+    //else if (result == undefined) {
+    //   res.sendStatus((res.affectedRows = 0));
+    // } else
     res.json(result);
   });
 });
@@ -22,6 +30,7 @@ router.post("/signup", (req, res) => {
 router.post("/login", function (req, res) {
   var username = req.body.id;
   var password = req.body.pw;
+  console.log(username, password);
   if (username && password) {
     // id와 pw가 입력되었는지 확인
 
@@ -60,4 +69,14 @@ router.get("/logout", function (req, res) {
 
 //수정
 
+//아이디 중복검사
+router.get("/login/check", (req, res) => {
+  pool.query("select id from u_id", function (err, result, fields) {
+    if (err) {
+      // console.log(err);
+    }
+    console.log(res);
+    res.json(result);
+  });
+});
 module.exports = router;

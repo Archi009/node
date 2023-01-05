@@ -8,10 +8,10 @@ function selectAll() {
       list.innerHTML = "";
       for (let i = 0; i < res.length; i++) {
         const tr = `<tr data-id="${res[i].no}">
-    <td>${res[i].no}</td>
-    <td>${res[i].title}</td>
-    <td>${res[i].userid}</td>
-    <td>${res[i].category}</td></tr>`;
+  <td>${res[i].no}</td>
+  <td>${res[i].title}</td>
+  <td id="userid">${res[i].userid}</td>
+  <td>${res[i].category}</td></tr>`;
         list.innerHTML += tr;
       }
     });
@@ -75,6 +75,7 @@ list.addEventListener("click", function (ev) {
   let pick = ev.target.parentNode;
   console.log(pick);
   let id = pick.getAttribute("data-id");
+  let userText = pick.children.userid.innerText;
   fetch(`${url}/${id}`)
     .then((res) => res.json()) //기본값이 get이기 때문에 중괄호 안에 method 정의를 생략
     .then((res) => {
@@ -83,32 +84,35 @@ list.addEventListener("click", function (ev) {
       time.innerText = res.wday;
       category.innerText = res.category;
       text.innerText = res.txt;
+      console.log(res.tip);
+      console.log(userText);
+      if (res.tip == userText) {
+        console.log(res.tip);
+        updt.style = "display : ''";
+      } else {
+        updt.style = "display : none";
+      }
     });
 });
 
 //삭제
-
-// 글작성 수정 버튼 숨기기 보이기
+dell.addEventListener("click", function () {
+  let no = num.innerText;
+  console.log(no);
+  fetch(`${url}/${no}`, { method: "delete" }).then(() => {
+    selectAll();
+  });
+});
+// 글작성버튼 숨기기 보이기
 function crt() {
   inputField.style.display = "block";
   ct.style.display = "block";
   edi.style.display = "none";
+  dell.style.display = "none";
   valueClear();
 }
-function upd() {
-  inputField.style.display = "block";
-  ct.style.display = "none";
-  edi.style.display = "block";
-  let writer = document.getElementById("title").innerText;
-  let category1 = document.getElementById("category").innerText;
-  let text1 = document.getElementById("text").innerText;
-  let no = document.getElementById("no").innerText;
-  console.log(writer, text1, category1);
-  inputTitle.value = writer;
-  inputCategory.value = category1;
-  txt.value = text1;
-  num.innerText = no;
-}
+// 글 수정 삭제버튼 보이기
+
 function fieldHidden() {
   inputField.style.display = "none";
 }
@@ -120,4 +124,19 @@ function valueClear() {
   txt.value = "";
   inputCategory.value = "";
   num.innerText = "";
+}
+function upd() {
+  inputField.style.display = "block";
+  ct.style.display = "none";
+  edi.style.display = "block";
+  dell.style.display = "block";
+  let writer = document.getElementById("title").innerText;
+  let category1 = document.getElementById("category").innerText;
+  let text1 = document.getElementById("text").innerText;
+  let no = document.getElementById("no").innerText;
+  console.log(writer, text1, category1);
+  inputTitle.value = writer;
+  inputCategory.value = category1;
+  txt.value = text1;
+  num.innerText = no;
 }

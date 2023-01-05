@@ -84,16 +84,24 @@ body {
   left: calc(calc(calc(100% / 3) * 2) + calc(calc(100% / 3) / 3));
 }
 
-.form.signin .form-elements > div:nth-child(3),
 .form.signin .form-elements > div:nth-child(4),
-.form.signin .form-elements > div:nth-child(5) {
+.form.signin .form-elements > div:nth-child(5),
+.form.signin .form-elements > div:nth-child(6) {
   height: 0px;
   opacity: 0;
 }
-.form.reset .form-elements > div:nth-child(2),
+
 .form.reset .form-elements > div:nth-child(3),
 .form.reset .form-elements > div:nth-child(4),
-.form.reset .form-elements > div:nth-child(5) {
+.form.reset .form-elements > div:nth-child(5),
+.form.reset .form-elements > div:nth-child(6) {
   height: 0px;
   opacity: 0;
+}
+#dupCheck {
+  text-align: center;
+  background-color: #2c2c2c;
+  height: 30px;
+  font-weight: bold;
+  border: 0;
 }

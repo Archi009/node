@@ -18,8 +18,20 @@
         <div class="arrow"></div>
         <div class="form-elements">
           <div class="form-element">
-            <input type="text" name="id" id="id" placeholder="Username" />
+            <input
+              type="text"
+              name="id"
+              id="id"
+              placeholder="Username"
+              oninput="dupcheck()"
+            />
           </div>
+          <input
+            class="form-element"
+            id="dupCheck"
+            style="display: none"
+            readonly
+          />
           <div class="form-element">
             <input type="password" placeholder="Password" name="pw" id="pw" />
           </div>
