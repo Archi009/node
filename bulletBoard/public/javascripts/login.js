@@ -59,17 +59,21 @@ submit_btn.addEventListener("click", function (ev) {
         body: JSON.stringify(data),
       })
         .then((res) => res.json())
-        .then((res) =>
-          // (res) => console.log(res)
-          {
-            if (res.affectedRows > 0) {
+        .then((res) => {
+          if (res.result == false) {
+            //라우터에서 에러 발생을 인지하고 반응값의 result에
+            alert(res.data); //false를 담아 보내주면
+          } else {
+            if (res.data.affectedRows > 0) {
+              //라우터 반응값에 줄바꿈 발생기록이 있으면
               signinSel();
               alert("회원가입 완료");
             } else {
-              alert("아이디 중복");
+              //그외 메세지를 받으면
+              alert("회원가입 실패");
             }
           }
-        );
+        });
     }
   } //로그인
   else if (btnText == "Sign In") {

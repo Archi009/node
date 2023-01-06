@@ -14,16 +14,16 @@ router.post("/signup", (req, res) => {
   pool.query(sql.insert, req.body, function (err, result, fields) {
     console.log(result);
     if (err) {
-      // if (err.code == "ER_DUP_ENTRY") {
-      //   res.send(`alert("아이디 중복")
-      //   location.reload()`);
-      // }
-      console.log(err);
+      if (err.code == "ER_DUP_ENTRY") {
+        //에러문에 결과값을 구분해서 보내준다
+        res.json({ result: false, data: "아이디중복" });
+        console.log(err);
+      } else {
+        res.json({ result: false, data: "기타에러" });
+      }
+    } else {
+      res.json({ result: true, data: result }); //결과값을 에러와 구분해서 보낸다
     }
-    //else if (result == undefined) {
-    //   res.sendStatus((res.affectedRows = 0));
-    // } else
-    res.json(result);
   });
 });
 // 로그인 프로세스

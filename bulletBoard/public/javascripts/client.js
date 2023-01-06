@@ -39,6 +39,33 @@ ct.addEventListener("click", function () {
     });
 });
 
+//상세페이지
+list.addEventListener("click", function (ev) {
+  detail.style.display = "block";
+  let pick = ev.target.parentNode;
+  console.log(pick);
+  let id = pick.getAttribute("data-id");
+  let userText = pick.children.userid.innerText;
+  fetch(`${url}/${id}`)
+    .then((res) => res.json()) //기본값이 get이기 때문에 중괄호 안에 method 정의를 생략
+    .then((res) => {
+      title.innerText = res.title;
+      no.innerText = res.no;
+      time.innerText = res.wday;
+      category.innerText = res.category;
+      text.innerText = res.txt;
+      console.log(res.tip);
+      console.log(userText);
+      if (res.tip == userText) {
+        console.log(res.tip);
+        updt.style = "display : ''";
+      } else {
+        updt.style = "display : none";
+      }
+    });
+  fieldHidden();
+});
+
 //수정
 edi.addEventListener("click", function (ev) {
   let data = {
@@ -64,35 +91,10 @@ edi.addEventListener("click", function (ev) {
       console.log(res);
     })
     .catch(() => {
-      alert("수정실패");
+      alert("오류발생");
     });
   valueClear();
-});
-
-//상세페이지
-list.addEventListener("click", function (ev) {
-  detail.style.display = "block";
-  let pick = ev.target.parentNode;
-  console.log(pick);
-  let id = pick.getAttribute("data-id");
-  let userText = pick.children.userid.innerText;
-  fetch(`${url}/${id}`)
-    .then((res) => res.json()) //기본값이 get이기 때문에 중괄호 안에 method 정의를 생략
-    .then((res) => {
-      title.innerText = res.title;
-      no.innerText = res.no;
-      time.innerText = res.wday;
-      category.innerText = res.category;
-      text.innerText = res.txt;
-      console.log(res.tip);
-      console.log(userText);
-      if (res.tip == userText) {
-        console.log(res.tip);
-        updt.style = "display : ''";
-      } else {
-        updt.style = "display : none";
-      }
-    });
+  fieldHidden();
 });
 
 //삭제
@@ -100,6 +102,7 @@ dell.addEventListener("click", function () {
   let no = num.innerText;
   console.log(no);
   fetch(`${url}/${no}`, { method: "delete" }).then(() => {
+    fieldHidden();
     selectAll();
   });
 });
@@ -125,6 +128,7 @@ function valueClear() {
   inputCategory.value = "";
   num.innerText = "";
 }
+
 function upd() {
   inputField.style.display = "block";
   ct.style.display = "none";
